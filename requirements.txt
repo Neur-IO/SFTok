@@ -1,0 +1,16 @@
+# torchvision
+omegaconf
+transformers
+timm
+open_clip_torch
+einops
+scipy
+pillow
+accelerate
+gdown
+huggingface-hub
+einops
+wandb
+torch-fidelity
+torchinfo
+webdataset
