@@ -1,0 +1,448 @@
+<!--TODO:修改链接
+        增加HF DEMO-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SFTok: Bridging the Performance Gap in Discrete Tokenizers.">
+  <meta name="keywords" content="SFTok, Discrete Tokenizers, VQ-VAEs, Quantization">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SFTok: Bridging the Performance Gap in Discrete Tokenizers</title>
+  <style type="text/css">svg:not(:root).svg-inline--fa{overflow:visible}.svg-inline--fa{display:inline-block;font-size:inherit;height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-lg{vertical-align:-.225em}.svg-inline--fa.fa-w-1{width:.0625em}.svg-inline--fa.fa-w-2{width:.125em}.svg-inline--fa.fa-w-3{width:.1875em}.svg-inline--fa.fa-w-4{width:.25em}.svg-inline--fa.fa-w-5{width:.3125em}.svg-inline--fa.fa-w-6{width:.375em}.svg-inline--fa.fa-w-7{width:.4375em}.svg-inline--fa.fa-w-8{width:.5em}.svg-inline--fa.fa-w-9{width:.5625em}.svg-inline--fa.fa-w-10{width:.625em}.svg-inline--fa.fa-w-11{width:.6875em}.svg-inline--fa.fa-w-12{width:.75em}.svg-inline--fa.fa-w-13{width:.8125em}.svg-inline--fa.fa-w-14{width:.875em}.svg-inline--fa.fa-w-15{width:.9375em}.svg-inline--fa.fa-w-16{width:1em}.svg-inline--fa.fa-w-17{width:1.0625em}.svg-inline--fa.fa-w-18{width:1.125em}.svg-inline--fa.fa-w-19{width:1.1875em}.svg-inline--fa.fa-w-20{width:1.25em}.svg-inline--fa.fa-pull-left{margin-right:.3em;width:auto}.svg-inline--fa.fa-pull-right{margin-left:.3em;width:auto}.svg-inline--fa.fa-border{height:1.5em}.svg-inline--fa.fa-li{width:2em}.svg-inline--fa.fa-fw{width:1.25em}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers-text{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter{background-color:#ff253a;border-radius:1em;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;height:1.5em;line-height:1;max-width:5em;min-width:1.5em;overflow:hidden;padding:.25em;right:0;text-overflow:ellipsis;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-bottom-right{bottom:0;right:0;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom right;transform-origin:bottom right}.fa-layers-bottom-left{bottom:0;left:0;right:auto;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom left;transform-origin:bottom left}.fa-layers-top-right{right:0;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-top-left{left:0;right:auto;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top left;transform-origin:top left}.fa-lg{font-size:1.3333333333em;line-height:.75em;vertical-align:-.0667em}.fa-xs{font-size:.75em}.fa-sm{font-size:.875em}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:2.5em;padding-left:0}.fa-ul>li{position:relative}.fa-li{left:-2em;position:absolute;text-align:center;width:2em;line-height:inherit}.fa-border{border:solid .08em #eee;border-radius:.1em;padding:.2em .25em .15em}.fa-pull-left{float:left}.fa-pull-right{float:right}.fa.fa-pull-left,.fab.fa-pull-left,.fal.fa-pull-left,.far.fa-pull-left,.fas.fa-pull-left{margin-right:.3em}.fa.fa-pull-right,.fab.fa-pull-right,.fal.fa-pull-right,.far.fa-pull-right,.fas.fa-pull-right{margin-left:.3em}.fa-spin{-webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear}.fa-pulse{-webkit-animation:fa-spin 1s infinite steps(8);animation:fa-spin 1s infinite steps(8)}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scale(-1,1);transform:scale(-1,1)}.fa-flip-vertical{-webkit-transform:scale(1,-1);transform:scale(1,-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1,-1);transform:scale(-1,-1)}:root .fa-flip-both,:root .fa-flip-horizontal,:root .fa-flip-vertical,:root .fa-rotate-180,:root .fa-rotate-270,:root .fa-rotate-90{-webkit-filter:none;filter:none}.fa-stack{display:inline-block;height:2em;position:relative;width:2.5em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.svg-inline--fa.fa-stack-1x{height:1em;width:1.25em}.svg-inline--fa.fa-stack-2x{height:2em;width:2.5em}.fa-inverse{color:#fff}.sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.sr-only-focusable:active,.sr-only-focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}.svg-inline--fa .fa-primary{fill:var(--fa-primary-color,currentColor);opacity:1;opacity:var(--fa-primary-opacity,1)}.svg-inline--fa .fa-secondary{fill:var(--fa-secondary-color,currentColor);opacity:.4;opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-primary{opacity:.4;opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-secondary{opacity:1;opacity:var(--fa-primary-opacity,1)}.svg-inline--fa mask .fa-primary,.svg-inline--fa mask .fa-secondary{fill:#000}.fad.fa-inverse{color:#fff}</style>  
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SFTok: Bridging the Performance Gap in Discrete Tokenizers</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://utkarshsinha.com">Qihang Rao</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://keunhong.com">Borui Zhang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://utkarshsinha.com">WenZhao Zheng</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://jonbarron.info">Jie Zhou</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://sofienbouaziz.com">Jiwen Lu</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Tsinghua University</span>
+            <span class="author-block"><sup>2</sup>University of Califorinia, Berkeley</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2212.09062"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code. -->
+              <span class="link-block">
+                <a href="https://github.com/Andyourao/SFTok" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <!-- HF demo. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/AndyRaoTHU/ReVQ"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>HF Demo</span>
+                </a>
+              </span>
+              <!-- 中文解读. -->
+              <span class="link-block">
+                <a href="https://zhuanlan.zhihu.com/p/1976302623838716254"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>中文解读</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <!-- Head Figure. -->
+    <div class="hero-body">
+      <img width = "100%" src="./static/sftok/1.png" alt="head figure">
+      <h2 class="subtitle has-text-centered">
+      SFTok employs self-forcing guided visual reconstruction (SFVR) that mitigates the training-inference inconsistency in multi-step iterative modeling within discrete tokenizers.
+      </h2>
+    </div>
+    <!-- Head Figure. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <!-- Visual tokenizers are pivotal in multimodal large models, acting as bridges between continuous inputs and discrete token. 
+            Nevertheless, training high-compression-rate VQ-VAEs remains computationally demanding, 
+            often necessitating thousands of GPU hours. 
+            This work demonstrates that a pre-trained VAE can be efficiently transformed into a VQ-VAE by controlling quantization noise within the VAE's tolerance threshold. 
+            We present <b style="color:red">Quantize-then-Rectify (ReVQ)</b>, 
+            a framework leveraging pre-trained VAEs to enable rapid VQ-VAE training with minimal computational overhead. 
+            By integrating <b style="color:red">channel multi-group quantization</b> to enlarge codebook capacity and a <b style="color:red">post rectifier</b> to mitigate quantization errors, 
+            ReVQ compresses ImageNet images into at most \(512\) tokens while sustaining competitive reconstruction quality (rFID = \(1.06\)). 
+            Significantly, ReVQ reduces training costs by over two orders of magnitude relative to state-of-the-art approaches: 
+            ReVQ finishes full training on a single NVIDIA 4090 in approximately 22 hours, 
+            whereas comparable methods require 4.5 days on a 32 A100 GPUs. 
+            Experimental results show that ReVQ achieves superior efficiency-reconstruction trade-offs. -->
+            Recent advances in multimodal models highlight the pivotal role of image tokenization in high-resolution image generation.
+            By compressing images into compact latent representations, tokenizers enable generative models to operate in lower-dimensional spaces, thereby improving computational efficiency and reducing complexity.
+            Discrete tokenizers naturally align with the autoregressive paradigm but still lag behind continuous ones, limiting their adoption in multimodal systems.
+            To address this, we propose <b style="color:red">SFTok</b>, a discrete tokenizer that incorporates a multi-step iterative mechanism for precise reconstruction.
+            By integrating <b style="color:red">self-forcing guided visual reconstruction</b> and <b style="color:red">debias-and-fitting training strategy</b>, 
+            SFTok resolves the training-inference inconsistency in multi-step process, significantly enhancing image reconstruction quality.
+            At a high compression rate of only \(64\) tokens per image, 
+            SFTok achieves state-of-the-art reconstruction quality on ImageNet (rFID = \(1.21\)) and demonstrates exceptional performance in class-to-image generation tasks (gFID = \(2.29\)).
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Introduction. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">1. Introduction</h2>
+        <!-- <h3 class="title is-4">Interpolating states</h3> -->
+        <div class="content has-text-centered">
+          <img width="80%" src="./static/sftok/3.png" class="content-image" alt="exp-1">
+          <h4 class="subtitle has-text-centered" style="font-weight: normal;">
+          Model Architecture of SFTok.
+          </h4>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            In recent years, image generation models have achieved remarkable achievements, 
+            enabling the synthesis of highly realistic images from natural language descriptions and reference images. 
+            Leading models, including HunyuanImage 3.0, Seedream 4.0, Nano Banana~\citep{nanobanana}, GPT-Image, and Emu 3.5, 
+            have demonstrated the capability to generate complex scenes and artistic images, attracting widespread attention from both academia and industry.
+            To unify image and text generation, researchers have proposed joint training paradigms such as Transfusion, which was further scaled up in subsequent work.
+            However, these hybrid frameworks still combine the diffusion model's \(l_2\) loss with the cross-entropy loss for textual data, which limits their training simplicity and framework generalization.
+            Therefore, we contemplate:  <b style="color:red"><em>can we construct a fully native multimodal unified training paradigm that relies solely on cross-entropy loss?</em></b>
+            This approach can also benefit from the mature advancements in the auto-regressive domain, such as KV Cache, leading to significant improvements in inference efficiency. 
+            Hence, discrete tokenizers need to be re-emphasized as a critical component.
+          </p>
+          <p>
+            The image tokenizers employed in multimodal models can be broadly categorized into two types: 
+            <strong>continuous tokenizers</strong> and <strong>discrete tokenizers</strong>. 
+            Continuous tokenizers typically model Gaussian distributions, whereas discrete tokenizers, 
+            analogous to those used in text generation, model multinomial distributions, making them more 
+            naturally aligned with linguistic representations. 
+            Due to training instability and higher compression rates, the reconstruction capability of 
+            discrete tokenizers is often inferior to that of continuous tokenizers, which greatly limits 
+            their application in multimodal model training. 
+            To enhance the performance of discrete tokenizers, we draw inspiration from the 
+            <strong>multi-step iterative</strong> denoising process of diffusion models that utilize 
+            continuous tokenizers, and seek to adapt this principle to discrete latent spaces. 
+            Compared to traditional continuous tokenizers, diffusion models generate images by 
+            progressively denoising, gradually reducing the error over multiple iterations. 
+            These iterative steps can be regarded as decomposing the direct distribution prediction task 
+            into a sequence of conditional distribution prediction tasks. 
+            Theoretically, such a formulation tends to achieve lower cross-entropy during prediction. 
+            Previous works have also explored similar multi-step iterative mechanisms in discrete spaces, 
+            adopting multi-step prediction methods during the training of generative models. 
+            In this process, the model iteratively predicts the tokens utilized for generation. 
+            However, we observe that directly applying this multi-step iterative mechanism to discrete 
+            tokenizers fails to substantially enhance their reconstruction performance. 
+            The underlying reason lies in the inconsistency between the training and inference processes, 
+            which introduces representational errors and hinders effective knowledge transfer from training to inference. 
+            Therefore, ensuring consistency between training and inference in discrete space becomes a critical challenge.
+          </p>
+          <p>
+            In this paper, we propose <strong>SFTok</strong>, a novel discrete tokenizer framework that employs multi-step iterative modeling to enhance reconstruction quality. 
+            By comparing the predicted distributions with the ground truth at each step, we observe that although the model is trained to align predictions with the ground truth, a noticeable discrepancy persists after convergence. 
+            Conventional training paradigms fail to account for this discrepancy, leading to an inconsistency between training and inference processes. 
+            To bridge this gap, we introduce a <strong>self-forcing guided visual reconstruction (SFVR)</strong> strategy and formulate a dedicated <strong>debias-and-fitting training</strong> scheme. 
+            At a high compression rate of 64 tokens per image, SFTok achieves state-of-the-art reconstruction quality on ImageNet (rFID = 1.21) and demonstrates excellent performance in downstream generative tasks (gFID = 2.29). 
+            The core contributions of this work are threefold: 
+            <ul>
+              <li>
+                <strong>Identification of training-inference inconsistency</strong>: we identify that conventional multi-step training strategies neglect the distribution discrepancy between training and inference, leading to a fundamental inconsistency.
+              </li>
+              <li>
+                <strong>Visual Condition Bias Correction</strong>:  we propose visual condition bias correction through self-forcing guided visual reconstruction and debias-and-fitting training to resolve this inconsistency.
+              </li>
+              <li>
+                <strong>Discrete Tokenizer with Strong Capability</strong>: we introduce SFTok, a discrete tokenizer that achieves superior performance in both image reconstruction and image generation tasks.
+              </li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Introduction. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">2. Method</h2>
+        <h3 class="title is-4">2.1. Self-Forcing Guided Visual Reconstruction</h3>
+        <div class="content has-text-centered">
+          <img width="60%" src="./static/sftok/2.png" class="content-image" alt="exp-1">
+          <h4 class="subtitle has-text-centered", style="font-weight: normal;">
+          Comparison of different mask token replacement strategies.
+          </h4>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+          We propose that fundamentally addressing training-inference inconsistency requires a mask replacement strategy that accurately simulates the distributional discrepancy between model predictions and ground truth during training.
+          As illustrated in the \(T = 8\) example, at each step \(i\), 
+          we first use the current model to predict the masked tokens, obtaining the predictions \(\hat{M}_{\overline{i}}\).
+          We then compare the distribution discrepancies between the predictions at each step \(\hat{m}_{\overline{1}}, \dots, \hat{m}_{\overline{T-1}}\), 
+          the ground truth \(M_g\), and the final prediction \(\hat{M}_{\overline{T}}\), along with the prediction’s Top-1 accuracy.
+          The distribution discrepancy is measured by KL divergence.
+
+          Empirical results reveal a substantial gap between the ground truth \(M_g\) and the final prediction \(\hat{M}_{\overline{T}}\), both in distribution and Top-1 accuracy.
+          This gap is postulated as the fundamental cause of the training-inference inconsistency.
+          Additionally, it is observed that with an increasing number of prediction steps, the distribution discrepancy between \(\hat{M}_i\) and \(\hat{M}_{\overline{T}}\) gradually reduces, 
+          concurrent with a rise in Top-1 accuracy.
+          The distribution of \(\hat{M}_{\overline{1}}\) is found to already closely approximate that of \(\hat{M}_{\overline{T}}\).
+          </p>
+          <p>
+          Based on these observations, we propose a new mask replacement strategy, termed <strong>self-forcing guided visual reconstruction (SFVR)</strong>, to mitigate the training-inference inconsistency.
+          Specifically, rather than replacing some masked tokens with the ground truth \(M_g\), we first perform a forward pass without accumulating gradients, using the model to obtain the prediction \(\hat{M}_{\overline{1}}\) at the first step.
+          Then, we replace some masked tokens with \(\hat{M}_{\overline{1}}\), thereby better simulating the distributional characteristics of the model’s predictions during inference.
+          It is worth noting that, although the ideal replacement strategy would be to use \(\hat{M}_{\overline{N-1}}\) to simulate the generation at the \(N\)-th step, 
+          we choose to use \(\hat{M}_{\overline{1}}\) for replacement due to its distribution being already very close to that of the final prediction, 
+          offering a more computationally efficient solution.
+          By using the SFVR strategy, the input distributions during training and inference are better aligned, 
+          alleviating the training-inference inconsistency and improving the performance of multi-step prediction.
+          </p>
+        </div>
+
+        <h3 class="title is-4">2.2. Debias-and-Fitting Training of SFTok
+        </h3>
+        <div class="content has-text-justified">
+          <p>
+            This section outlines the debias-and-fitting training strategy of SFTok, which is composed of three stages: “warming up,” “distribution alignment modeling,” and “fine-tuning.”
+
+            For both the "warming up" and "distribution alignment modeling" stages, the decoder from MaskGIT is adopted as the pixel prediction head.
+            Mirroring TiTok, the pre-trained MaskGIT is used as a teacher model, 
+            from which the SFTok model learns a fitted distribution to bolster training stability and accelerate convergence.
+            The "warming up" stage specifically simulates single-step prediction by replacing no mask tokens, focusing on improving the initial prediction's accuracy.
+            In the “distribution alignment modeling” stage, 
+            we introduce the SFVR strategy proposed earlier, replacing some mask tokens with the model’s first-step prediction, 
+            thereby enabling multi-step conditional distribution training and prediction, which enhances image reconstruction quality.
+          </p>
+          <p>
+            After the first two training stages, we optionally proceed with the “fine-tuning” stage to improve the reconstruction quality.
+            In this stage, we freeze the encoder and quantizer of SFTok, 
+            and only train the decoder of both SFTok and pretrained MaskGIT towards pixel space using the typical VQGAN training approach.
+            We observe that this debias-and-fitting training strategy significantly improves training stability and reconstructed image quality, 
+            as demonstrated by the experimental results.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Experiment. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+
+        <h2 class="title is-3">3. Experiment</h2>
+
+        <h3 class="title is-4">3.1. Image Reconstruction</h3>
+        <h3 class="title is-4">Quantitative Comparison</h3>
+        <div class="content has-text-justified">
+        <div class="content has-text-centered">
+          <img width="50%" src="./static/sftok/t1.png" class="content-image" alt="exp-1">
+          <h4 class="subtitle has-text-centered", style="font-weight: normal;">
+          Quantitative comparison with state-of-the-art methods on ImageNet.
+          </h4>
+        </div>
+        <!-- <div class="content has-text-centered">
+          <img width="60%" src="./static/revq/3.png" class="content-image" alt="exp-1">
+        </div> -->
+          <p>
+            We perform a comparative evaluation of our SFTok model against state-of-the-art discrete tokenizers on the ImageNet dataset. 
+            Evaluations on the validation set employs rFID. 
+            As shown, SFTok-B and SFTok-L achieve rFID scores of 1.44 and 1.21, respectively, 
+            in 8-step reconstruction when compressing images to only 64 tokens.
+            These results establish a new state-of-the-art in reconstruction quality at the present compression rate. 
+            <strong>Notably, SFTok-L outperforms many models with relatively lower compression rates, underscoring the efficiency of our approach.</strong>
+          </p>
+        </div>
+        <h3 class="title is-4">Qualitative Comparison</h3>
+        <div class="content has-text-justified">
+        <div class="content has-text-centered">
+          <img width="80%" src="./static/sftok/5.png" class="content-image" alt="exp-1">
+          <h4 class="subtitle has-text-centered" style="font-weight: normal;">
+          Reconstruction results on ImageNet validation set (details marked in red boxes).
+          </h4>
+        </div>
+          <p>
+            For visualization, we compare several high-performance methods for compressing images to 64 tokens. 
+            The results are shown in the table above, further demonstrating the superiority of SFTok.
+            As highlighted in the red boxes, <strong>SFTok preserves fine-grained details in complex textures more effectively than alternative methods.</strong>
+          </p>
+        </div>
+
+        <h3 class="title is-4">Generation Evaluation</h3>
+        <div class="content has-text-justified">
+        <div class="content has-text-centered">
+          <img width="50%" src="./static/sftok/t2.png" class="content-image" alt="exp-1">
+          <h4 class="subtitle has-text-centered" style="font-weight: normal;">
+          Generation Comparsion on ImageNet.
+          </h4>
+        </div>
+        <div class="content has-text-centered">
+          <img width="80%" src="./static/sftok/6.png" class="content-image" alt="exp-1">
+          <h4 class="subtitle has-text-centered" style="font-weight: normal;">
+          Visualizations of generation results.
+          </h4>
+        </div>
+          <p>
+            We evaluate the image generation performance of SFTok using the MaskGIT paradigm. 
+            However, in contrast to the MaskGIT method, 
+            we utilize the SFTok-B and SFTok-L models, which are trained via the debias-and-fitting strategy, as discrete tokenizers.
+            The generative model generates different token sequences based on different class labels, 
+            and the sequences are subsequently converted into images through the SFTok decoder.
+            As shown in the table, both SFTok-B and SFTok-L-based generation models outperform MaskGIT and all other transformer-based generation models listed in the table in terms of gFID.
+            Additionally, SFTok demonstrates superior performance compared to diffusion-based generation models.
+            Furthermore, <strong>the qualitative results of the generated images, as presented above, highlight SFTok’s remarkable ability to preserve fine-grained details and textures.</strong>
+          </p>
+        </div>
+
+        <h3 class="title is-4">3.2. Ablation Study</h3>
+        <h3 class="title is-4">Training-Inference Consistency Training</h3>
+        <div class="content has-text-centered">
+          <img width="80%" src="./static/sftok/t3.png" class="content-image" alt="exp-2">
+        </div>
+        <div class="content has-text-justified">
+        <p>
+          We begin our analysis by investigating the impact of the proposed self-forcing guided visual reconstruction (SFVR) strategy and evaluating the effectiveness of the warming-up procedure.
+          In addition to SFTok-B, we train two separate ablation models on ImageNet: one using the baseline replacement strategy and the other employing our proposed approach. 
+          For both models, all configurations are maintained identical, except for the inclusion or exclusion of the warming-up phase.
+          As demonstrated in the table, the SFVR strategy results in a significant improvement in reconstruction quality compared to the vanilla method.
+          Moreover, <strong>the inclusion of the warming-up procedure further enhances the overall performance of the model, providing additional evidence of its importance for training.</strong>
+        </p>
+        </div>
+
+        <h3 class="title is-4">Mask Replacement Ratio</h3>
+        <div class="content has-text-centered">
+          <img width="50%" src="./static/sftok/t4.png" class="content-image" alt="exp-2">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            We further investigate the effect of different mask replacement ratios during training on the model’s performance.
+            To this end, we conduct experiments with three distinct mask replacement ratios: 0.5, 0.8, and 1.0, while keeping all other training settings consistent with those of the SFTok-B configuration.
+            As shown in the table, the results indicate that a replacement ratio of 1.0 yields the best reconstruction quality.
+            This suggests that fully simulating the distribution encountered during inference during the training phase significantly enhances model performance.
+          </p>
+        </div>
+
+        <h3 class="title is-4">Image Reconstruction with Varying Steps</h3>
+        <div class="content has-text-centered">
+          <img width="40%" src="./static/sftok/7.png" class="content-image" alt="exp-3">
+        </div>
+        <div class="content has-text-centered">
+          <img width="60%" src="./static/sftok/8.png" class="content-image" alt="exp-3">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+We evaluate the image reconstruction performance of SFTok across different numbers of inference steps using a multi-step prediction strategy.
+In this approach, the model iteratively predicts the masked tokens conditioned on the unmasked ones, progressively updating the tokens with the predicted values.
+As shown in the figure above, we conduct an ablation experiment using the SFTok-B model, which has undergone the debias-and-fitting training process, 
+and evaluate its performance based on two quantitative metrics: rFID and IS.
+As the number of inference steps increases from 1 to 8, the reconstruction quality improves significantly, demonstrating the effectiveness of the multi-step prediction strategy.
+Furthermore, we present visualizations of the reconstruction results for different step numbers.
+As shown in above, <strong>with an increasing number of inference steps, the details in the image become more refined, and the perceptual quality is enhanced.</strong>
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Experiment. -->
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link" href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is based on the <a href="https://github.com/nerfies/nerfies.github.io">template</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- <script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script> -->
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body);
+  });
+</script> -->
+</body>
+</html>
+
