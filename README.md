@@ -1,8 +1,8 @@
 # SFTok: Bridging the Performance Gap in Discrete Tokenizers
 
-[![paper](https://img.shields.io/badge/arXiv-Paper-green)](https://arxiv.org/abs/2507.10547)
-[![Website](https://img.shields.io/badge/Project-Website-blue)](https://andyourao.github.io/SFTok/)
-[![Demo](https://img.shields.io/badge/HF-Demo-red)](https://huggingface.co/spaces/AndyRaoTHU/ReVQ)
+[![paper](https://img.shields.io/badge/arXiv-Paper-green)](https://arxiv.org/abs/2512.16910v1)
+[![Website](https://img.shields.io/badge/Project-Website-blue)](https://neur-io.github.io/SFTok/)
+[![Demo](https://img.shields.io/badge/HF-Demo-red)](https://huggingface.co/spaces/AndyRaoTHU/SFTok)
 [![Demo](https://img.shields.io/badge/知乎-中文解读-yellow)](https://zhuanlan.zhihu.com/p/1976302623838716254)
 
 - ***SFTok resolves the training-inference inconsistency in multi-step process, significantly
